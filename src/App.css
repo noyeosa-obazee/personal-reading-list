@@ -1,0 +1,270 @@
+/* ===== Base ===== */
+:root {
+  color-scheme: light;
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --danger: #dc2626;
+  --danger-dark: #b91c1c;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    Arial,
+    sans-serif;
+  line-height: 1.5;
+}
+
+#root {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  text-align: left;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ===== Header (title, total, New Book button) ===== */
+#root > div:first-child {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+#root > div:first-child h1 {
+  margin-right: auto;
+  font-size: 1.9rem;
+}
+
+#root > div:first-child > div {
+  padding: 4px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.new-book-btn {
+  background: var(--primary);
+  color: #fff;
+}
+
+.new-book-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* ===== Book list ===== */
+.book-reading-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.book-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.book-title {
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.book-author {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* Buttons row inside a card */
+.book-card > div:not(.book-status-container) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.book-toggle-read-btn {
+  background: #eef2ff;
+  color: var(--primary-dark);
+}
+
+.book-toggle-read-btn:hover {
+  background: #e0e7ff;
+}
+
+.book-delete-btn {
+  background: #fef2f2;
+  color: var(--danger);
+}
+
+.book-delete-btn:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+.book-status-container {
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.book-status-text {
+  display: inline-block;
+  padding: 3px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+}
+
+/* ===== Empty state ===== */
+.empty-books-display {
+  padding: 50px 20px;
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty-books-display .new-book-btn {
+  margin-top: 16px;
+}
+
+/* ===== Book form ===== */
+.book-form-container {
+  max-width: 440px;
+  margin: 40px auto 0;
+}
+
+.book-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.book-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.book-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.book-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.add-book-btn,
+.close-book-form-button {
+  width: 100%;
+  padding: 10px;
+}
+
+.add-book-btn {
+  background: var(--primary);
+  color: #fff;
+}
+
+.add-book-btn:hover {
+  background: var(--primary-dark);
+}
+
+.close-book-form-button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.close-book-form-button:hover {
+  background: var(--bg);
+}
+
+/* ===== Small screens ===== */
+@media (max-width: 500px) {
+  #root {
+    padding: 24px 16px 40px;
+  }
+
+  #root > div:first-child h1 {
+    font-size: 1.5rem;
+  }
+}
