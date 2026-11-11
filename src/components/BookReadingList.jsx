@@ -17,10 +17,9 @@ const BookReadingList = ({
       </div>
       {books.length > 0 ? (
         <div className="book-reading-list">
-          {books.map((book, index) => (
+          {books.map((book) => (
             <BookCard
-              key={index}
-              index={index}
+              key={book.id}
               book={book}
               toggleBookStatus={toggleBookStatus}
               deleteBook={deleteBook}

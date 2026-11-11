@@ -1,4 +1,4 @@
-const BookCard = ({ index, book, toggleBookStatus, deleteBook }) => {
+const BookCard = ({ book, toggleBookStatus, deleteBook }) => {
   return (
     <div className="book-card">
       <h2 className="book-title">{book.title}</h2>
@@ -6,11 +6,11 @@ const BookCard = ({ index, book, toggleBookStatus, deleteBook }) => {
       <div>
         <button
           className="book-toggle-read-btn"
-          onClick={() => toggleBookStatus(index, book)}
+          onClick={() => toggleBookStatus(book.id)}
         >
           {book.status === "Completed" ? "Mark to read" : "Mark completed"}
         </button>
-        <button className="book-delete-btn" onClick={() => deleteBook(index)}>
+        <button className="book-delete-btn" onClick={() => deleteBook(book.id)}>
           Delete
         </button>
       </div>

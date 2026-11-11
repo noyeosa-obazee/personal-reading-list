@@ -19,7 +19,7 @@ const BookForm = ({
           name="title"
           id="book-title-input"
           value={bookForm.title}
-          onChange={(e) => handleBookFormInputChange(e)}
+          onChange={handleBookFormInputChange}
           required
         />
       </div>

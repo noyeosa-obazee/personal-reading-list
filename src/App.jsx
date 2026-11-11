@@ -4,9 +4,7 @@ import BookReadingList from "./components/BookReadingList";
 import BookForm from "./components/BookForm";
 
 function App() {
-  const [books, setBooks] = useState([
-    { title: "The Hobbit", author: "J.J.R. Tolkien", status: "To Read" },
-  ]);
+  const [books, setBooks] = useState([]);
 
   const [bookForm, setBookForm] = useState({ title: "", author: "" });
 
@@ -14,24 +12,30 @@ function App() {
 
   const addBook = () => {
     if (bookForm.title.trim() !== "" && bookForm.author.trim() !== "") {
-      setBooks([...books, { ...bookForm, status: "To Read" }]);
+      setBooks((prevBooks) => [
+        ...prevBooks,
+        { id: crypto.randomUUID(), ...bookForm, status: "To Read" },
+      ]);
       setBookForm({ title: "", author: "" });
+      setShowBookForm(false);
     }
   };
 
-  const deleteBook = (index) => {
-    const booksClone = [...books];
-    booksClone.splice(index, 1);
-    setBooks(booksClone);
+  const deleteBook = (id) => {
+    setBooks((prevBooks) => prevBooks.filter((book) => book.id != id));
   };
 
-  const toggleBookStatus = (index, book) => {
-    const booksClone = [...books];
-    booksClone.splice(index, 1, {
-      ...book,
-      status: book.status === "Completed" ? "To Read" : "Completed",
-    });
-    setBooks(booksClone);
+  const toggleBookStatus = (id) => {
+    setBooks((prevBooks) =>
+      prevBooks.map((book) =>
+        book.id !== id
+          ? book
+          : {
+              ...book,
+              status: book.status === "Completed" ? "To Read" : "Completed",
+            },
+      ),
+    );
   };
 
   const handleBookFormInputChange = (e) => {
